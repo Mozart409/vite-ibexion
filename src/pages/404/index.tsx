@@ -1,5 +1,5 @@
-import CustomButton from '@/components/CustomButton'
 import { Link } from 'react-router-dom'
+import CustomButton from '../../components/CustomButton'
 
 export default function Page404() {
   return (

@@ -1,129 +1,132 @@
-import Link from 'next/link'
-import PropTypes from 'prop-types'
-import { useState } from 'react'
-import { getButtonAppearance } from 'utils/button'
-import { buttonLinkPropTypes, linkPropTypes, mediaPropTypes } from 'utils/types'
+import { Fragment } from 'react'
+import { Disclosure, Menu, Transition } from '@headlessui/react'
+import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { NavLink } from 'react-router-dom'
 
-import ButtonLink from './button-link'
-import CustomLink from './custom-link'
-import CustomImage from './image'
-import MobileNavMenu from './mobile-nav-menu'
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(' ')
+}
 
-export const Navbar = ({ navbar }) => {
-  const [mobileMenuIsShown, setMobileMenuIsShown] = useState(false)
-
+const navigation = [
+  { name: 'Home', href: '/' },
+  { name: 'Contact', href: '/contact' }
+]
+export const Navbar: React.FC = () => {
   return (
-    <>
-      {/* The actual navbar */}
-      <nav className=" bg-white border-b-2 border-gray-200">
-        <div className="container grid grid-cols-3 grid-flow-row justify-between items-center">
-          {/* Content aligned to the left */}
-          <div className="flex flex-row justify-self-start items-center">
-            {/* List of links on desktop */}
-            <ul className="hidden flex-row gap-4 items-baseline list-none md:flex">
-              {navbar.links.map((navLink) => (
-                <li key={navLink.id}>
-                  <CustomLink link={navLink}>
-                    <div className="py-1 px-2 hover:text-gray-500">
-                      {navLink?.text}
-                    </div>
-                  </CustomLink>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="justify-self-center">
-            <Link href="/[[...slug]]" as="/">
-              <a>
-                <div className="hidden md:block">
-                  <CustomImage
-                    media={navbar?.logo}
-                    className="hidden md:block object-contain w-auto h-auto"
-                    width={128}
-                    height={64}
-                  />
-                </div>
-                <div className="block md:hidden">
-                  <CustomImage
-                    media={navbar?.mobileLogo}
-                    className=" object-contain w-auto h-auto"
-                    width={128}
-                    height={64}
-                  />
-                </div>
-              </a>
-            </Link>
-          </div>
-
-          {/* Hamburger menu on mobile */}
-          <button
-            onClick={() => setMobileMenuIsShown(true)}
-            className="block justify-self-end p-1 md:hidden"
-          >
-            <div className="pr-2 w-auto h-8">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-5 h-5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>
-          </button>
-          {/* CTA button on desktop */}
-          <div className="flex flex-row justify-self-start items-center">
-            {/* List of links on desktop */}
-            <ul className="hidden flex-row gap-4 items-baseline list-none md:flex">
-              <li>
-                <Link href="/login">
-                  <a>
-                    <div className="py-1 px-2 hover:text-gray-500">Login</div>
-                  </a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/profile">
-                  <a>
-                    <div className="py-1 px-2 hover:text-gray-500">Profile</div>
-                  </a>
-                </Link>
-              </li>
-            </ul>
-            {navbar.button && (
-              <div className="hidden justify-self-end md:block ml-4">
-                <ButtonLink
-                  button={navbar.button}
-                  appearance={getButtonAppearance(navbar.button.type, 'light')}
-                  compact
-                />
+    <Disclosure as="nav" className="bg-white shadow">
+      {({ open }) => (
+        <>
+          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+            <div className="relative flex h-16 justify-between">
+              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                {/* Mobile menu button */}
+                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                  <span className="absolute -inset-0.5" />
+                  <span className="sr-only">Open main menu</span>
+                  {open ? (
+                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                  ) : (
+                    <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                  )}
+                </Disclosure.Button>
               </div>
-            )}
+              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                <div className="flex flex-shrink-0 items-center">
+                  <img
+                    className="h-8 w-auto"
+                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                    alt="Your Company"
+                  />
+                </div>
+                <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+                  {navigation.map((item) => (
+                    <NavLink
+                      key={item.name}
+                      to={item.href}
+                      className="inline-flex items-center"
+                    >
+                      {({ isActive, isPending }) => (
+                        <span
+                          className={
+                            isActive
+                              ? ' border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900'
+                              : ' border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                          }
+                        >
+                          {item.name}
+                        </span>
+                      )}
+                    </NavLink>
+                  ))}
+                  {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
+                  {/* <a
+                    href="/"
+                    className="inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900"
+                  >
+                    Home
+                  </a> */}
+                  {/* <a
+                    href="/#contact-section"
+                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                  >
+                    Contact
+                  </a> */}
+                </div>
+              </div>
+              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                {/* Profile dropdown */}
+                <Menu as="div" className="relative ml-3">
+                  <div>
+                    <Menu.Button className="relative flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                      <span className="absolute -inset-1.5" />
+                      <span className="sr-only">Open user menu</span>
+                      <img
+                        className="h-8 w-8 rounded-full"
+                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        alt=""
+                      />
+                    </Menu.Button>
+                  </div>
+                </Menu>
+              </div>
+            </div>
           </div>
-        </div>
-      </nav>
 
-      {/* Mobile navigation menu panel */}
-      {mobileMenuIsShown && (
-        <MobileNavMenu
-          navbar={navbar}
-          closeSelf={() => setMobileMenuIsShown(false)}
-        />
+          <Disclosure.Panel className="sm:hidden">
+            <div className="space-y-1 pb-4 pt-2">
+              {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
+              <Disclosure.Button
+                as="a"
+                href="#"
+                className="block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700"
+              >
+                Dashboard
+              </Disclosure.Button>
+              <Disclosure.Button
+                as="a"
+                href="#"
+                className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+              >
+                Team
+              </Disclosure.Button>
+              <Disclosure.Button
+                as="a"
+                href="#"
+                className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+              >
+                Projects
+              </Disclosure.Button>
+              <Disclosure.Button
+                as="a"
+                href="#"
+                className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+              >
+                Calendar
+              </Disclosure.Button>
+            </div>
+          </Disclosure.Panel>
+        </>
       )}
-    </>
+    </Disclosure>
   )
 }
-
-Navbar.propTypes = {
-  navbar: PropTypes.shape({
-    logo: mediaPropTypes,
-    links: PropTypes.arrayOf(linkPropTypes),
-    button: buttonLinkPropTypes
-  })
-}
-
-export default Navbar

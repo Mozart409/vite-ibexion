@@ -45,7 +45,58 @@ export default {
         'colfo-gray': '#272F38',
         'gecko-gray': '#50545E',
         'meta-blue': '#449FDB'
-      }
+      },
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            maxWidth: '85ch',
+            color: theme('colors.canary-blue.300'),
+            fontSize: theme('fontSize.paragraph'),
+            fontWeight: theme('fontWeight.paragraph'),
+            strong: {
+              color: theme('colors.canary-blue.200')
+            },
+            a: {
+              color: theme('colors.canary-blue.100'),
+              fontSize: theme('fontSize.paragraph'),
+              fontWeight: theme('fontWeight.paragraph'),
+              '&:hover': {
+                color: theme('colors.canary-blue.300')
+              }
+            },
+            h1: {
+              color: theme('colors.canary-blue.100'),
+              fontSize: theme('fontSize.h1'),
+              fontWeight: theme('fontWeight.h1')
+            },
+            h2: {
+              color: theme('colors.canary-blue.100'),
+              fontSize: theme('fontSize.h2'),
+              fontWeight: theme('fontWeight.h2')
+            },
+            h3: {
+              color: theme('colors.canary-blue.200'),
+              fontSize: theme('fontSize.h3'),
+              fontWeight: theme('fontWeight.h3')
+            },
+            h4: {
+              color: theme('colors.canary-blue.300'),
+              fontSize: theme('fontSize.h4'),
+              fontWeight: theme('fontWeight.h4')
+            },
+            h5: {
+              color: theme('colors.canary-blue.300'),
+              fontSize: theme('fontSize.h4'),
+              fontWeight: theme('fontWeight.h4')
+            },
+            h6: {
+              color: theme('colors.canary-blue.300'),
+              fontSize: theme('fontSize.h4'),
+              fontWeight: theme('fontWeight.h4')
+            }
+          }
+        }
+      })
     }
   },
   plugins: [
