@@ -9,7 +9,8 @@
     "format": "rustywind --write .",
     "lint": "eslint --fix . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "typecheck": "tsc --watch"
+    "typecheck": "tsc --watch",
+    "start": "tsc && vite build && vite preview"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.16",
