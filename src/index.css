@@ -48,10 +48,6 @@ html {
   margin-left: 0.5em;
 }
 
-.list-check {
-  list-style-image: url(/check32.png);
-}
-
 .error-style {
   @apply text-red-500 font-semibold h-12 text-base mt-1 ml-2 text-left;
 }

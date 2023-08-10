@@ -8,6 +8,7 @@ export const HomePage: React.FC = () => {
       <Parallax />
       <Text />
       <Charging />
+      <div className="py-12"></div>
     </div>
   )
 }
