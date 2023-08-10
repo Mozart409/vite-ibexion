@@ -1,8 +1,11 @@
-export default function Text() {
+export const Text: React.FC = () => {
   return (
-    <div className="container py-12 px-4 mx-auto sm:px-6 lg:px-8">
-      <div className="mx-auto text-white break-words prose prose-sm lg:prose-lg">
-        <h6 id="ibexion-stands-for-high-end-ebike-components-with-a-focus-on-a-state-of-the-art-ebike-powertrain.">
+    <div className="container py-12 mx-auto">
+      <div className="mx-auto text-white break-words prose-lg prose lg:prose-xl">
+        <h6
+          id="ibexion-stands-for-high-end-ebike-components-with-a-focus-on-a-state-of-the-art-ebike-powertrain."
+          className="text-3xl text-canary-blue-500"
+        >
           IBEXION stands for high-end eBike components, with a focus on a
           state-of-the-art eBike Powertrain.
         </h6>

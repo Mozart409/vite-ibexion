@@ -1,6 +1,6 @@
 import { Footer } from './footer'
 import { Navbar } from './navbar'
-import { Routes, Route, Outlet, Link } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 const Layout: React.FC = () => {
   return (
     <div className="flex flex-col justify-between min-h-screen font-sans antialiased bg-lava-black-900">
@@ -15,7 +15,7 @@ const Layout: React.FC = () => {
         </main>
       </div>
       {/* Aligned to the bottom */}
-      {/*  <Footer /> */}
+      <Footer />
     </div>
   )
 }

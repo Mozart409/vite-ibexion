@@ -20,6 +20,12 @@ export default function ContactSection() {
             >
               +49 711 508878323
             </a>
+            <a
+              href="mailto:info@ibexion.de"
+              className="py-2.5 px-3.5 text-sm font-semibold text-gray-900 bg-white rounded-md shadow-sm hover:bg-gray-100 focus-visible:outline-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+            >
+              info@ibexion.de
+            </a>
             <Link
               to="/privacy-policy"
               className="text-sm font-semibold leading-6 text-white"

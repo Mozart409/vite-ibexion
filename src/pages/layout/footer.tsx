@@ -1,49 +1,28 @@
+import { Link } from 'react-router-dom'
+
 export const Footer = () => {
   return (
-    <footer className="px-8 pt-10 bg-gray-800 md:px-0">
-      <div className="container flex flex-col md:flex-row md:justify-evenly lg:justify-between">
-        <div>
-          {footer.logo && (
-            <CustomImage
-              media={footer?.logo}
-              className="object-contain w-auto h-8"
-              width={64}
-              height={64}
-            />
-          )}
-        </div>
-        <nav className="flex flex-row flex-wrap items-start mb-10 md:gap-20 md:justify-end">
-          {footer.columns.map((footerColumn) => (
-            <div
-              key={footerColumn.id}
-              className="mt-10 w-6/12 md:mt-0 md:w-auto"
+    <>
+      <footer className="bg-white">
+        <div className="py-4 px-6 mx-auto max-w-7xl md:flex md:justify-between md:items-center lg:px-8">
+          <div className="flex justify-center space-x-6 md:order-2">
+            <Link to="/imprint" className="text-gray-400 hover:text-gray-500">
+              <span>Imprint</span>
+            </Link>
+            <Link
+              to="/privacy-policy"
+              className="text-gray-400 hover:text-gray-500"
             >
-              <p className="font-semibold tracking-wide text-gray-300 uppercase border-b-2 border-solid border-lava-black-400">
-                {footerColumn.title}
-              </p>
-              <div className="flex flex-col">
-                <ul className="mt-2">
-                  {footerColumn.links.map((link) => (
-                    <li
-                      key={link.id}
-                      className="py-1 px-1 -mx-1 text-gray-400 hover:text-gray-600"
-                    >
-                      <CustomLink className="" link={link}>
-                        {link?.text}
-                      </CustomLink>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-        </nav>
-      </div>
-      <div className="py-6 text-sm text-center text-gray-400 bg-gray-900 rounded">
-        <div className="container">
-          {new Date().getFullYear()} {footer.smallText}
+              <span>Privacy Policy</span>
+            </Link>
+          </div>
+          <div className="mt-8 md:order-1 md:mt-0">
+            <p className="text-xs leading-5 text-center text-gray-500">
+              &copy; {new Date().getFullYear()} Ibexion GmbH
+            </p>
+          </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </>
   )
 }

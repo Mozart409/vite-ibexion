@@ -1,11 +1,7 @@
-import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Disclosure } from '@headlessui/react'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { NavLink } from 'react-router-dom'
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
-}
+import { Link } from 'react-router-dom'
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -32,11 +28,13 @@ export const Navbar: React.FC = () => {
               </div>
               <div className="flex flex-1 justify-center items-center sm:justify-start sm:items-stretch">
                 <div className="flex flex-shrink-0 items-center">
-                  <img
-                    className="w-auto h-8"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                    alt="Your Company"
-                  />
+                  <Link to="/">
+                    <img
+                      className="w-auto h-8"
+                      src="/full-text.svg"
+                      alt="Ibexion GmbH"
+                    />
+                  </Link>
                 </div>
                 <div className="hidden sm:flex sm:ml-6 sm:space-x-8">
                   {navigation.map((item) => (
@@ -73,56 +71,28 @@ export const Navbar: React.FC = () => {
                   </a> */}
                 </div>
               </div>
-              <div className="flex absolute inset-y-0 right-0 items-center pr-2 sm:static sm:inset-auto sm:pr-0 sm:ml-6">
-                {/* Profile dropdown */}
-                <Menu as="div" className="relative ml-3">
-                  <div>
-                    <Menu.Button className="flex relative text-sm bg-white rounded-full focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none">
-                      <span className="absolute -inset-1.5" />
-                      <span className="sr-only">Open user menu</span>
-                      <img
-                        className="w-8 h-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt=""
-                      />
-                    </Menu.Button>
-                  </div>
-                </Menu>
-              </div>
+              <div className="flex absolute inset-y-0 right-0 items-center pr-2 sm:static sm:inset-auto sm:pr-0 sm:ml-6"></div>
             </div>
           </div>
 
           <Disclosure.Panel className="sm:hidden">
             <div className="pt-2 pb-4 space-y-1">
-              {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
-              <Disclosure.Button
-                as="a"
-                href="#"
-                className="block py-2 pr-4 pl-3 text-base font-medium text-indigo-700 bg-indigo-50 border-l-4 border-indigo-500"
-              >
-                Dashboard
-              </Disclosure.Button>
-              <Disclosure.Button
-                as="a"
-                href="#"
-                className="block py-2 pr-4 pl-3 text-base font-medium text-gray-500 border-l-4 border-transparent hover:text-gray-700 hover:bg-gray-50 hover:border-gray-300"
-              >
-                Team
-              </Disclosure.Button>
-              <Disclosure.Button
-                as="a"
-                href="#"
-                className="block py-2 pr-4 pl-3 text-base font-medium text-gray-500 border-l-4 border-transparent hover:text-gray-700 hover:bg-gray-50 hover:border-gray-300"
-              >
-                Projects
-              </Disclosure.Button>
-              <Disclosure.Button
-                as="a"
-                href="#"
-                className="block py-2 pr-4 pl-3 text-base font-medium text-gray-500 border-l-4 border-transparent hover:text-gray-700 hover:bg-gray-50 hover:border-gray-300"
-              >
-                Calendar
-              </Disclosure.Button>
+              {navigation.map((item) => (
+                <NavLink key={item.name} to={item.href} className="">
+                  {({ isActive, isPending }) => (
+                    <Disclosure.Button
+                      as="span"
+                      className={
+                        isActive
+                          ? 'block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700'
+                          : 'block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700'
+                      }
+                    >
+                      <span>{item.name}</span>
+                    </Disclosure.Button>
+                  )}
+                </NavLink>
+              ))}
             </div>
           </Disclosure.Panel>
         </>
