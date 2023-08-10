@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 export default function ContactSection() {
   return (
     <div className="">
-      <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
-        <div className="relative border border-gray-500 isolate overflow-hidden bg-gray-900 px-6 py-24 text-center shadow-2xl sm:rounded-3xl sm:px-16">
+      <div className="py-24 mx-auto max-w-7xl sm:py-32 sm:px-6 lg:px-8">
+        <div className="overflow-hidden relative py-24 px-6 text-center bg-gray-900 border border-gray-500 shadow-2xl sm:px-16 sm:rounded-3xl isolate">
           <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Contact us now!
           </h2>
@@ -13,10 +13,10 @@ export default function ContactSection() {
             Detailed information on the handling of user data can be found in
             our privacy policy. Just write us or call us.
           </p>
-          <div className="mt-10 flex items-center justify-center gap-x-6">
+          <div className="flex gap-x-6 justify-center items-center mt-10">
             <a
               href="tel:0049711508878323"
-              className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="py-2.5 px-3.5 text-sm font-semibold text-gray-900 bg-white rounded-md shadow-sm hover:bg-gray-100 focus-visible:outline-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               +49 711 508878323
             </a>
